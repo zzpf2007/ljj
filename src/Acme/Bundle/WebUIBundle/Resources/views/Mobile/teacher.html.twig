@@ -1,0 +1,128 @@
+{% extends 'AcmeWebUIBundle::layouts/mobilebase.html.twig' %}
+
+{% block body %}
+    <div id="main">
+        <header id="hd">
+            <div class="right"><a href="" class="g-soBtn"></a></div>
+            <h1>名师</h1>
+        </header>
+
+        <section id="bd">
+            <ul class="tab_tit TAB" id=".tab-teacher">
+                <li class="on"><a href="javascript:void(0);">推荐</a></li>
+                <li><a href="javascript:void(0);">分类</a></li>
+                <li><a href="javascript:void(0);">人气</a></li>
+                <li><a href="javascript:void(0);">经验</a></li>
+            </ul>
+            <div class="tab_con">
+                <div class="tab-teacher">
+
+                    <div class="box2">
+                        <ul class="sz-list2">
+                            {% for item in teachers %}
+                                <li>
+                                    <div class="pic">
+                                         <a href="/mobile/teacher/{{ item.id }}"><img src="{{ item.photo }}" alt=""></a>
+                                    </div>
+                                    <div class="txt">
+                                         <h4><a href="/mobile/teacher/{{ item.id }}">{{ item.name }}</a></h4>
+                                         <p class="intro">主讲科目：{{ item.major }}</p>
+                                         <div class="tags">
+                                             <span class="ico1">证</span>
+                                             <span class="ico2">专</span>
+                                         </div>
+                                     </div>
+                                </li>  
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tab-teacher dn">
+                    <div class="s-tit2">
+                        <a href="" class="a-btn1 r">选择分类</a>
+                        <h3>一级建造师</h3>
+                    </div>
+                    
+                    <div class="box2">
+                        <ul class="sz-list2">
+                             {% for item in teachers %}
+                                <li>
+                                    <div class="pic">
+                                         <a href="/mobile/teacher/{{ item.id }}"><img src="{{ item.photo }}" alt=""></a>
+                                    </div>
+                                    <div class="txt">
+                                         <h4><a href="/mobile/teacher/{{ item.id }}">{{ item.name }}</a></h4>
+                                         <p class="intro">主讲科目：{{ item.major }}</p>
+                                         <div class="tags">
+                                             <span class="ico1">证</span>
+                                             <span class="ico2">专</span>
+                                         </div>
+                                     </div>
+                                </li>  
+                            {% endfor %}  
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tab-teacher dn">
+                    <div class="h10"></div>
+
+                    <div class="box2">
+                        <ul class="sz-list2">
+                            {% for item in teachers %}
+                                <li>
+                                    <div class="pic">
+                                         <a href="/mobile/teacher/{{ item.id }}"><img src="{{ item.photo }}" alt=""></a>
+                                    </div>
+                                    <div class="txt">
+                                         <h4><a href="/mobile/teacher/{{ item.id }}">{{ item.name }}</a></h4>
+                                         <p class="intro">主讲科目：{{ item.major }}</p>
+                                         <div class="tags">
+                                             <span class="ico1">证</span>
+                                             <span class="ico2">专</span>
+                                         </div>
+                                     </div>
+                                </li>  
+                            {% endfor %} 
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tab-teacher dn">
+                    <div class="h10"></div>
+
+                    <div class="box2">
+                        <ul class="sz-list2">
+                            {% for item in teachers %}
+                                <li>
+                                    <div class="pic">
+                                         <a href="/mobile/teacher/{{ item.id }}"><img src="{{ item.photo }}" alt=""></a>
+                                    </div>
+                                    <div class="txt">
+                                         <h4><a href="/mobile/teacher/{{ item.id }}">{{ item.name }}</a></h4>
+                                         <p class="intro">主讲科目：{{ item.major }}</p>
+                                         <div class="tags">
+                                             <span class="ico1">证</span>
+                                             <span class="ico2">专</span>
+                                         </div>
+                                     </div>
+                                </li>  
+                            {% endfor %}  
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+      {% block footer %}
+        {{ include('AcmeWebUIBundle::Mobile/common/mobilefooter.html.twig') }}
+      {% endblock %}
+    </div>
+{% endblock %}
+
+{% block javascript %}
+  <script type="text/javascript" src="{{ asset('assets/js/mobile/jquery.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('assets/js/mobile/lib.js') }}"></script>
+  
+{% endblock %}

@@ -1,0 +1,3 @@
+user_api_path:
+  path: /api/test/hello/{name}
+  defaults: { _controller: AppBundle:Front:index }

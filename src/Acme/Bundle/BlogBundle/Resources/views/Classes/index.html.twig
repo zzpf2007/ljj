@@ -1,0 +1,43 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf8">
+   <title></title>
+   <link rel="stylesheet" href="/assets/css/pc/style.css" />
+</head>
+<body>
+  {% for class in classes %}
+     <ul>
+
+       <li>
+       {% if class.level==1 %}
+       {{ class.type }}   category一级
+       {% endif %}
+       <ul style="padding-left: 100px;">
+       {% if class.level==2 %}
+          <li>
+        	{{ class.type }} category二级
+        	  {% for cour in class.cour %}
+	          <ul>
+	            <li>
+	            {{ cour.title }}--{{ cour.photo }}--{{ cour.duration}}--{{ cour.tcvideourl }} course一级
+                   <ul>
+                      <li>
+                         course(item)二级
+                      </li>
+                   </ul>
+	            </li>
+	          </ul>  
+	        {% endfor %}
+          </li>
+       {% endif %}
+        </ul>
+       </li>
+     </ul>
+ {% endfor %}
+
+  </ul>
+</body>
+</html>

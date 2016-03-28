@@ -1,0 +1,37 @@
+acme_blog:
+    resource: "@AcmeBlogBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_user:
+    resource: "@AcmeUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+acme_my_sys:
+    resource: "@AcmeMySysBundle/Resources/config/routing.yml"
+    prefix:   /mysys
+
+acme_mobile:
+    resource: "@AcmeMobileBundle/Controller/"
+    type:     annotation
+    prefix:   /api/mobile
+    
+acme_webui:
+     resource: "@AcmeWebUIBundle/Resources/config/routing.yml"
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+app_main_urls:
+  resource: "@AppBundle/Resources/config/routing.yml"
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_registration_confirmed:
+    path:      /account/profile
+    defaults:  { _controller: AcmeWebUIBundle:User:profile }
+
+root_url:
+  path: '/'
+  defaults: { _controller: AcmeWebUIBundle:Front:index }

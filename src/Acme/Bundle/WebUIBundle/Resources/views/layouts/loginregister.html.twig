@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{% endblock %}</title>
+  <meta name="keywords" content="学考通" />
+  <meta name="description" content="学考通" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="stylesheet" href="/assets/css/pc/cui.css" />
+  <link rel="stylesheet" href="/assets/css/pc/lib.css" />
+  <link rel="stylesheet" href="/assets/css/pc/style.css" />
+  <style>
+  body{min-width: 0;}
+  </style>
+</head>
+<body style="background-color:#F1F1F1;">
+
+  <div id="img">
+     <img src="/assets/images/pc/logo.png" class="img1">
+     <img src="/assets/images/pc/left.png" class="img2">
+  </div>
+
+  <div id="frameBox">
+      
+        {% block form %}
+     
+        {% endblock %}
+
+  </div>
+
+  <script type="text/javascript" src="/assets/js/pc/jquery.js"></script>
+  <script type="text/javascript" src="/assets/js/pc/lib.js"></script>
+
+  {% block javascript %}
+
+  {% endblock %}
+  <div class="copyright">
+      <span>关于我们 | 学考通动态 | 资质 | 帮助中心 | 招贤纳士 | 联系我们</span><br><br>
+      Copyright@2008-2038中建瑞通版权所有京ICP备15000560号-1 京ICP证080808号
+  </div>
+</body>
+</html>

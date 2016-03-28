@@ -1,0 +1,31 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf8">
+   <title></title>
+   <link rel="stylesheet" href="/assets/css/pc/style.css" />
+</head>
+<body>
+  {% for cour in cours %}
+     <ul>
+
+       <li>
+       {% if cour.level==1 %}
+        {{ cour.title }}
+       {% endif %}
+       <ul style="padding-left: 100px;">
+       {% if cour.level==2 %}
+          <li>
+        	{{ cour.title }}
+          </li>
+          {% endif %}
+        </ul>
+       </li>
+     </ul>
+ {% endfor %}
+
+  </ul>
+</body>
+</html>

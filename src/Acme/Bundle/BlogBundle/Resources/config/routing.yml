@@ -1,0 +1,11 @@
+acme_blog_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: AcmeBlogBundle:Default:index }
+
+classes_index_path:
+  path: '/account/classes/index'
+  defaults: { _controller: AcmeBlogBundle:Classes:index }
+
+cour_index_path:
+  path: '/account/cour/index'
+  defaults: { _controller: AcmeBlogBundle:Cour:index }

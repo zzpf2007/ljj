@@ -1,0 +1,170 @@
+{% extends "AcmeWebUIBundle::layouts/homebase.html.twig" %}
+
+{% block title %}学考通，让学习考试更轻松 关于我们{% endblock %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="assets/css/pc/cui.css" />
+  <link rel="stylesheet" href="assets/css/pc/lib.css" />
+  <link rel="stylesheet" href="assets/css/pc/style.css" />
+  <link rel="stylesheet" href="assets/css/pc/jquery.fancybox.css">
+{% endblock %}
+
+{% block script %}
+     
+    <script>
+        $(document).ready(function() {
+          $('.tz-list4 li:odd').addClass('odd');
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+          // 登陆注册-弹出
+          $('.login-fancybox').fancybox({
+            padding:0,
+              width:460,
+              height:328
+          });
+          $('.reg-fancybox').fancybox({
+            padding:0,
+              width:460,
+              height:629
+          });
+        });
+  </script>
+{% endblock %}
+
+{% block content %}
+
+  <div id="ban" style="background-image: url(assets/images/pc/ban-about.jpg);">
+    <div class="wp">
+      <h2>关于我们</h2>
+      <p>除产品以外，学考通也有值得你了解的地方</p>
+    </div>
+  </div>
+
+  <div id="bd">
+    <div class="wp">
+      <ul class="tz-list4">
+        <li>
+          <div class="pic"><img src="assets/images/pc/img1.jpg" alt=""></div>
+          <div class="txt">
+            <h3>中国首家职业教育互助学习平台(P2P+O2O)</h3>
+            <p>学考通是北京中建瑞通科技有限公司旗下互联网教育云服务学习平台，全力打造全球</p>
+          </div>
+        </li>
+        <li>
+          <div class="picc"><img src="assets/images/pc/img2.jpg" alt=""></div>
+          <div class="txtt">
+            <h3>业内顶尖的管理团队和技术专家</h3>
+            <p>学考通具有卓越的教育服务战略能力和丰富的互联网商业运营实战经验。凭借先进的技术革新实力和一流的市场开拓能力，我们怀揣梦想以推动中国互联网教育平台进步为己任，依托互联网载体，为学生和老师提供最具价值的教育平台和服务。</p>
+          </div>
+        </li>
+        <li>
+          <div class="pic"><img src="assets/images/pc/img3.jpg" alt=""></div>
+          <div class="txt">
+            <h3>学考通为老师、学生建立直通车学习平台</h3>
+            <p>目前已设立北京、上海、山西、陕西、山东、河北、云南、深圳等8家分公司，去中介化学习平台，让老师、学生实现互助、互动、互赢</p>
+          </div>
+        </li>
+        <li>
+          <div class="picc"><img src="assets/images/pc/img4.jpg" alt=""></div>
+          <div class="txtt">
+            <h3>学考通---帮助老师、学生更直接</h3>
+            <p>更快速学习、沟通，让老师、学生价值最大化，让学习考试更轻松！</p>
+          </div>
+        </li>
+        <li>
+          <div class="pic"><img src="assets/images/pc/img5.jpg" alt=""></div>
+          <div class="txt">
+            <h3>打造全球最好、最大的职业教育互助学习平台！</h3>
+            <p>让老师、学生更高效地学习、互动、分享和沟通。团队理念：团结、感恩、责任、奉献。企业精神：互助、合作、超越、创新。平台口号：共同携手实现财富自由！企业使命：生命不息，学习不止，学考通，伴你学习终生。</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+
+    <div id="fd">
+    <div class="wp">
+      <div class="ftop">
+        <div class="fnav">
+          <dl class="fm1">
+            <dt><a href="">关于我们</a></dt>
+        
+              {% for friendly in friendlys %}
+                  <dd><a href="{{ friendly.link }}"> {{ friendly.title }} </a></dd>                 
+              {% endfor %}
+            
+           {#} <dd><a href="">加入我们</a></dd>
+            <dd><a href="">联系我们</a></dd>#}
+          </dl>
+          <dl class="fm1">
+            <dt><a href="">学习资讯</a></dt>
+
+            {% for learn in learns %}
+                <dd><a href="{{ learn.link }}">{{ learn.title }}</a></dd>
+            {% endfor %}
+            {#<dd><a href="">就业指南</a></dd>
+            <dd><a href="">认证考证</a></dd>#}
+          </dl>
+          <dl class="fm1">
+            <dt><a href="">帮助中心</a></dt>
+
+            {% for help in helps %}
+              <dd><a href="{{ help.link }}">{{ help.title }}</a></dd>
+            {% endfor %}
+            {#
+            <dd><a href="">积分规则</a></dd>#}
+          </dl>
+          <dl class="fm1">
+            <dt><a href="">合作加盟</a></dt>
+
+            {% for partner in partners %}
+                <dd><a href="{{ partner.link }}">{{ partner.title }}</a></dd>
+            {% endfor %}
+           {#} <dd><a href="">渠道加盟</a></dd>
+            <dd><a href="">名师加盟</a></dd>#}
+          </dl>
+          <dl class="fm1">
+            <dt><a href="">下载中心</a></dt>
+
+            {% for down in downs %}
+               <dd><a href="{{ down.link }}">{{ down.title }}</a></dd>
+            {% endfor %}
+           {#} <dd><a href="">表情包</a></dd>
+            <dd><a href="">桌面壁纸</a></dd>#}
+          </dl>
+        </div>
+        <div class="fdr">
+          <div class="ftel">400-029-3003</div>
+          每天 9:30 - 23:30 (仅收市话费)
+          <div class="flink">
+            <a href=""><img src="assets/images/pc/fico1.png" alt=""></a>
+            <a href=""><img src="assets/images/pc/fico2.png" alt=""></a>
+            <a href=""><img src="assets/images/pc/fico3.png" alt=""></a>
+            <a href=""><img src="assets/images/pc/fico4.png" alt=""></a>
+          </div>
+        </div>
+      </div>
+      <div class="fcopy">
+        Copyright@2008-2038中建瑞通版权所有京ICP备15000560号-1 京ICP证080808号
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block javascript %}
+
+  <script src="assets/js/pc/jquery.js"></script>
+  <script src="assets/js/pc/lib.js"></script>
+  <script src="assets/js/pc/jquery.js"></script>
+  <script src="assets/js/pc/lib.js"></script>
+  <script src="assets/js/pc/jquery.fancybox.pack.js"></script>
+
+{% endblock %}

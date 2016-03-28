@@ -1,0 +1,43 @@
+{% extends "AcmeWebUIBundle::layouts/accountbase.html.twig" %}
+
+{% block content %}
+    <div class="admin-content">
+
+
+        <div class="am-cf am-padding">
+          <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">消息列表</strong></div>
+
+        </div>
+
+         
+         <table border=1 class="bor" style="margin-left:10px;"> 
+          
+          <thead>
+             <tr>
+                <th></th>         
+                <th>ID</th>
+                <th>消息内容</th>
+                <th>消息时间</th>
+                <th>操作</th>
+             </tr>  
+          </thead> 
+
+          <tbody>
+              {% for message in messages %}        
+         
+                 <tr> 
+                    <th>
+                       <input type="checkbox" style="width:15px;height:15px;">
+                    </th>
+                    <td>{{ message.id }}</td>
+                    <td>{{ message.content }}</td>
+                    <td>{{ message.time | date('Y-m-d H:i:s') }}</td>
+                    <td></td>
+                 </tr>
+    
+              {% endfor %}
+            </tbody>
+             
+         </table>
+  </div>
+{% endblock %}

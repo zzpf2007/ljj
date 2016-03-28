@@ -1,0 +1,20 @@
+
+
+ {% for ccc in cc %}
+     <ul>
+
+       <li>
+       {% if ccc.level==1 %}
+        {{ ccc.title }}{{ ccc.level }}
+       {% endif %}
+       <ul style="padding-left: 100px;">
+          <li>
+         	{% if ccc.level==2 %}
+        	{{ ccc.title }}{{ ccc.level }}
+       		{% endif %}
+          </li>
+        </ul>
+       </li>
+     </ul>
+ {% endfor %}
+

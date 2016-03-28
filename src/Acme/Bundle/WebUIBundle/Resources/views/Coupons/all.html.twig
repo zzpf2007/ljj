@@ -1,0 +1,39 @@
+
+
+{% extends "AcmeWebUIBundle::layouts/accountbase.html.twig" %}
+
+{% block content %}
+    <div class="admin-content">
+
+        <div class="am-cf am-padding">
+          <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">用户优惠券详情</strong></div>
+        </div>
+    
+    <ul>
+          {% for user in users %}
+            <li class="coup">
+             用户名：{{ user.username }}  &nbsp &nbsp &nbsp 昵称： {{ user.account ? user.account.name : "" }}
+
+             <br>
+              <span class="cou">拥有的红包:</span> 
+              <ul>
+               
+                {% for coupon in user.coupons %}
+                
+
+                  <li class="size">
+
+                      优惠券金额：{{ coupon.amount }} &nbsp  优惠券种类： {{ coupon.species}}  &nbsp 最低消费： {{ coupon.minmoney }} &nbsp 截止时间：{{ coupon.time }}
+
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% endfor %}
+    </ul>
+
+         
+  </div>
+
+  
+{% endblock %}

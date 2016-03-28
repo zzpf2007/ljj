@@ -1,0 +1,54 @@
+{% extends "AcmeWebUIBundle::layouts/accountbase.html.twig" %}
+
+{% block content %}
+    <div class="admin-content">
+
+
+        <div class="am-cf am-padding">
+          <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品列表</strong></div>
+
+        </div>
+
+         <table border=1 class="bor" style="margin-left:10px;"> 
+          
+          <thead>
+             <tr>
+                <th></th>         
+                <th>ID</th>
+                <th>商品名称</th>
+                <th>商品数量</th>
+                <th>已兑换数量</th>
+                <th>商品价格</th>
+                <th>商品图片</th>
+                <th>操作</th>
+             </tr>  
+          </thead> 
+
+          <tbody>
+              {% for good in goods %}        
+         
+                 <tr> 
+                    <th>
+                       <input type="checkbox" style="width:15px;height:15px;">
+                    </th>
+                    <td>{{ good.id }}</td>
+                    <td>{{ good.goodsname }}</td>
+                    <td>{{ good.goodsnumber }}</td>
+                    <td>{{ good.soldnumber }}</td>
+                    <td>{{ good.goodsprice }}</td>
+                    <td>{{ good.goodsphoto }}</td>
+                    <td>
+                       
+                       {{ form_start( delete_form, { 'action': path( 'goods_delete_path', {'id':good.id})}) }}                    
+                        {{ form_widget( delete_form ) }}  
+                             <input type="submit" value="删除" />
+                        {{ form_end(delete_form) }}
+
+                    </td>
+                 </tr>
+    
+              {% endfor %}
+            </tbody>
+         </table>
+  </div>
+{% endblock %}

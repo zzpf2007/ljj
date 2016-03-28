@@ -1,0 +1,45 @@
+{% extends 'AcmeWebUIBundle::layouts/loginregister.html.twig' %}
+
+{% block title %}注册{% endblock %}
+
+{% block form %}
+  {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+      <div class="head">
+        <h3>注册</h3>
+      </div>
+      <div class="cont">
+        <div class="regBox">
+            <div id="fos_user_registration_form">
+
+              {{ form_errors(form) }}
+
+              <div class="inp-box">请输入邮箱
+                {{ form_widget( form.email, {'attr': {'class': 'inp'}}) }}
+              </div>
+
+              <div class="inp-box">用户名
+                {{ form_widget( form.username, {'attr': {'class': 'inp'}} ) }}
+              </div>
+
+              <div class="inp-box">请输入密码
+                {{ form_widget( form.plainPassword.first, {'attr': {'class': 'inp'}} ) }}
+              </div>
+
+              <div class="inp-box">确认密码
+                {{ form_widget( form.plainPassword.second, {'attr': {'class': 'inp'}} ) }}
+              </div>
+
+              <div class="inp-box">手机号码
+                {{ form_widget( form.mobile, {'attr': {'class': 'inp'}} ) }}
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <input type="submit" value="确定" class="sbtn1 btn-blue">
+        <input type="submit" value="取消" class="sbtn1">
+      </div>
+  {{ form_end(form) }}
+
+{% endblock %}
