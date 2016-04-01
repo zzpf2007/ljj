@@ -196,4 +196,28 @@ class Teacher
     {
         return $this->duration;
     }
+
+    /**
+     * Set exp
+     *
+     * @param integer $exp
+     *
+     * @return Teacher
+     */
+    public function setExp($exp)
+    {
+        $this->exp = $exp;
+
+        return $this;
+    }
+
+    /**
+     * Get exp
+     *
+     * @return integer
+     */
+    public function getExp()
+    {
+        return $this->exp;
+    }
 }

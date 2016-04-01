@@ -29,7 +29,7 @@ class Course
     protected $photo;
 
     /**
-    * @ORM\Column(type="string", length=20, nullable=true)
+    * @ORM\Column(type="string")
     */
 
     protected $duration;
