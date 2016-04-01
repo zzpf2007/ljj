@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg"> Course </strong> </div>
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg"> Course_Item </strong> </div>
     </div>
 
     <div class="am-g">
@@ -21,28 +21,28 @@
 		              <td>操作</td>
 		            </tr>
 
-                    {% for course in courses %}
+                    {% for item in items %}
 	                    <tr>
 	                      <td><input type="checkbox" /></td>
-			              <td class="am-hide-sm-only">{{ course.id }}</td>
-			              <td class="am-hide-sm-only">{{ course.title }}</td>
-			              <td class="am-hide-sm-only">{{ course.photo }}</td>
-			              <td class="am-hide-sm-only">{{ course.duration }}</td>
-			              <td class="am-hide-sm-only">{{ course.tcvideourl }}</td>
+			              <td class="am-hide-sm-only">{{ item.id }}</td>
+			              <td class="am-hide-sm-only">{{ item.title }}</td>
+			              <td class="am-hide-sm-only">{{ item.photo }}</td>
+			              <td class="am-hide-sm-only">{{ item.duration }}</td>
+			              <td class="am-hide-sm-only">{{ item.tcvideourl }}</td>
 			              <td>
 			                <div class="am-btn-toolbar">
 			                  <div class="am-btn-group am-btn-group-xs">
 
-			                     <a href="{{ path('course_edit_path',{ id : course.id }) }}">
+			                     <a href="{{ path('item_edit_path',{ id : item.id }) }}">
 					                 <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
 					             </a>  
 
 					            <div class="del">
-				                   {{ form_start( delete_form, { 'action': path( 'course_delete_path', { 'id' : course.id } ) } ) }}                    
+				                   {{ form_start( delete_form, { 'action': path( 'item_delete_path', { 'id' : item.id } ) } ) }}                    
 				                   {{ form_widget( delete_form ) }}  
 				                   <input type="submit" value="删除" />
 				                   {{ form_end(delete_form) }}
-				                </div> 					               
+				                </div> 				               
 					             
 			                  </div>
 			                </div>

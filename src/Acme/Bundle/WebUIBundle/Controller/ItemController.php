@@ -2,7 +2,7 @@
 
 namespace Acme\Bundle\WebUIBundle\Controller;
 
-use AppBundle\Entity\Course;
+use AppBundle\Entity\Item;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +12,7 @@ use AppBundle\Utility\WebUtility\WebJson;
 use AppBundle\Utility\WebApi\WebResponse\CategoryChildResponse;
 use AppBundle\Utility\WebApi\WebResponse\CategoryRootResponse;
 
-class CourseController extends Controller
+class ItemController extends Controller
 {
 
    /**
@@ -21,7 +21,7 @@ class CourseController extends Controller
     public function indexAction(Request $request)
     {      
         $em = $this->getDoctrine()->getManager();
-        $courses = $em->getRepository('AppBundle:Course')->findAll();
+        $items = $em->getRepository('AppBundle:Item')->findAll();
 
         $delete_form = $this->createFormBuilder()
                       ->setMethod('DELETE')
@@ -31,126 +31,108 @@ class CourseController extends Controller
         //$paginator = $this->get('knp_paginator');
         //$pagination = $paginator->paginate($qb, $request->query->getInt('page', 1),5);
 
-        return array('courses' => $courses,'delete_form' => $delete_form->createView());
+        return array('items' => $items,'delete_form' => $delete_form->createView());
     }
-
+    
      /**
     * @Template()
     */
     public function editAction(Request $request, $id)
     {      
         $em = $this->getDoctrine()->getManager();
-        $course = $em->getRepository('AppBundle:Course')->find($id);
+        $item = $em->getRepository('AppBundle:Item')->find($id);
 
-        $edit_form = $this->createFormBuilder($course)
+        $edit_form = $this->createFormBuilder($item)
                 ->add('title', null) 
                 ->add('photo', null) 
                 ->add('duration', null) 
-                ->add('tcvideourl', null)    
+                ->add('tcvideourl', null)       
                 ->getForm();
 
         $edit_form->handleRequest($request);
 
         if ($edit_form->isSubmitted() && $edit_form->isValid()) {
-            $em->persist($course);
+            $em->persist($item);
             $em->flush();
 
-        return $this->redirectToRoute('course_index_path');
+            return $this->redirectToRoute('item_index_path');
         }
 
         return array(            
-           'edit_form' => $edit_form->createView()
+            'edit_form' => $edit_form->createView()
         );
     }
 
      /**
-    * @Template()
-    */
+     * @Template()
+     */
     public function createAction(Request $request)
-    {    
+    {
+       
         $em = $this->getDoctrine()->getManager();
-        $subcategories = $em->getRepository('AppBundle:Subcategory')->findAll();
+        $courses = $em->getRepository('AppBundle:Course')->findAll();
 
         $attr=array('empty_value' => '请选择');    
-        foreach($subcategories as $subcategory)
+        foreach($courses as $course)
         {
-            $attr[$subcategory->getId()] = $subcategory->getTitle();
+            $attr[$course->getId()] = $course->getTitle();
         }
-        
-        $em = $this->getDoctrine()->getManager();
-        $teachers = $em->getRepository('AppBundle:Teacher')->findAll();
-
-        $att=array('empty_value' => '请选择');    
-        foreach($teachers as $teacher)
-        {
-            $att[$teacher->getId()] = $teacher->getName();
-        }
-
-        //var_dump($att);
-       // die;    
-        $course = new Course();
+              
+        $item = new Item();
         // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
-        $new_form = $this->createFormBuilder($course)             
-                      ->add('title', null) 
-                      ->add('photo', null) 
-                      ->add('duration', null) 
-                      ->add('tcvideourl', null)    
-                      ->add('subcategory', 'choice', array('choices' => $attr)) 
-                      ->add('teacher', 'choice', array('choices' => $att))        
-                      ->getForm();
+        $new_form = $this->createFormBuilder( $item)             
+                     ->add('title', null) 
+                    ->add('photo', null) 
+                    ->add('duration', null) 
+                    ->add('tcvideourl', null)   
+                    ->add('course', 'choice', array('choices' => $attr))        
+                    ->getForm();
         
-        $subcategory = null;
-        $teacher = null;
-
+        $course = null;
         if ($request->getMethod() == "POST") {  
             $formData = $request->request->get($new_form->getName());
-            $subcategory = $em->getRepository('AppBundle:Subcategory')->findOneBy(array('id'=>$formData['subcategory']));
-            $teacher = $em->getRepository('AppBundle:Teacher')->findOneBy(array('id'=>$formData['teacher']));
-
-            $formData['subcategory'] = null;
-            $formData['teacher'] = null; 
-
+            $course = $em->getRepository('AppBundle:Course')->findOneBy(array('id'=>$formData['course']));
+            $formData['course'] = null;      
             $new_form->bind($formData); 
         } 
         if ($new_form->isSubmitted() && $new_form->isValid()) {
           
-            $course->setSubcategory($subcategory);
-            $course->setTeacher($teacher);
-
+            $item->setCourse($course);
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($course);
+            $entityManager->persist($item);
             $entityManager->flush();
-            return $this->redirectToRoute('course_index_path');
+            return $this->redirectToRoute('item_index_path');
         }
         return array(
             'new_form' => $new_form->createView()
         );
     }
-    
+
       /**
      * @Template()
      */
     public function deleteAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $course = $em->getRepository('AppBundle:Course')->find($id);
+        $item = $em->getRepository('AppBundle:Item')->find($id);
 
-        $form = $this->createDeleteForm($course);
+        $form = $this->createDeleteForm($item);
         $form->handleRequest($request);
       
-        $em->remove($course);
+        $em->remove($item);
         $em->flush();
 
-        return $this->redirectToRoute('course_index_path');
+        return $this->redirectToRoute('item_index_path');
     }
-    private function createDeleteForm($course)
+    private function createDeleteForm($item)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('course_delete_path', array('id' => $course->getId())))
+            ->setAction($this->generateUrl('item_delete_path', array('id' => $item->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;
     }
- 
+
+  
 }
 

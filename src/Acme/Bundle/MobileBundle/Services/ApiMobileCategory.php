@@ -20,13 +20,13 @@ class ApiMobileCategory extends ApiMobileMode
     $result = '{"code":0,"message":"succeed!",';
     $result .= '"result":{';
     $result .= '"list":[';
-    $result .= '{"id":1,"title":"注册建造师","icon":"null","category_id":"207470","click_url":"http://www.xuekaotong.cn/api/school/categories/207470"},';
-    $result .= '{"id":2,"title":"造价工程师","icon":"null","category_id":"207512","click_url":"http://www.xuekaotong.cn/api/school/categories/207512"},';
-    $result .= '{"id":3,"title":"注册结构师","icon":"null","category_id":"209731","click_url":"http://www.xuekaotong.cn/api/school/categories/209731"},';
-    $result .= '{"id":4,"title":"注册监理师","icon":"null","category_id":"209734","click_url":"http://www.xuekaotong.cn/api/school/categories/209734"},';
-    $result .= '{"id":5,"title":"注册消防师","icon":"null","category_id":"209747","click_url":"http://www.xuekaotong.cn/api/school/categories/209747"},';
-    $result .= '{"id":6,"title":"注册电气师","icon":"null","category_id":"209749","click_url":"http://www.xuekaotong.cn/api/school/categories/209749"},';
-    $result .= '{"id":7,"title":"物业管理师","icon":"null","category_id":"209904","click_url":"http://www.xuekaotong.cn/api/school/categories/209904"},';
+    $result .= '{"id":1,"title":"HTML/CSS","icon":"null","category_id":"1", "click_url":"http://ljj.cn/api/school/categories/1"},';
+    $result .= '{"id":2,"title":"Javascript","icon":"null","category_id":"2","click_url":"http://ljj.cn/api/school/categories/2"},';
+    $result .= '{"id":3,"title":"jQuery","icon":"null","category_id":"3","click_url":"http://ljj.cn/api/school/categories/3"},';
+    $result .= '{"id":4,"title":"bootstrap","icon":"null","category_id":"4","click_url":"http://ljj.cn/api/school/categories/4"},';
+    $result .= '{"id":5,"title":"node.JS","icon":"null","category_id":"5","click_url":"http://ljj.cn/api/school/categories/5"},';
+    $result .= '{"id":6,"title":"Ajax","icon":"null","category_id":"6","click_url":"http://ljj.cn/api/school/categories/6"},';
+    $result .= '{"id":7,"title":"HTML5","icon":"null","category_id":"7","click_url":"http://ljj.cn/api/school/categories/7"},';
     $result .= '{"id":8,"title":"更多..","icon":"null","category_id":"null","click_url":"null"}';
     $result .= ']}}';
 

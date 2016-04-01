@@ -3,13 +3,13 @@ namespace AppBundle\Entity;
 
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
-  * @ORM\Entity
-  * @ORM\Table(name="item")
+  * @ORM\Entity() 
+  * @ORM\Table(name="course_item")
   */
-class Item 
+class Item
 {
     /**
     * @ORM\Column(type="integer")
@@ -19,31 +19,31 @@ class Item
     protected $id;
 
     /**
-    * @ORM\Column(type="string", length=30)
-    */
+     * @ORM\Column(type="string")
+     */   
     protected $title;
 
     /**
-    * @ORM\Column(type="string", length=100)
-    */
+     * @ORM\Column(type="string")
+     */   
     protected $photo;
 
     /**
     * @ORM\Column(type="string", length=20, nullable=true)
     */
+
     protected $duration;
 
    /**
     * @ORM\Column(type="string", nullable=true)
     */
     protected $tcVideoUrl;
-
-     /**
-     * @ORM\ManyToOne(targetEntity="Course", inversedBy="item")
-     * @ORM\JoinColumn(name="course_id", referencedColumnName="id", onDelete="cascade")
-     */
-    protected $course; 
-
+   
+    /**
+      * @ORM\ManyToOne(targetEntity="Course", inversedBy="item")
+      * @ORM\JoinColumn(name="course_id", referencedColumnName="id")
+      */
+    protected $course;
 
     /**
      * Get id

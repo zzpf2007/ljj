@@ -1,60 +1,32 @@
 <?php
-// src/AppBundle/Entity/Category.php
 namespace AppBundle\Entity;
 
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
-  * @ORM\Entity
+  * @ORM\Entity() 
   * @ORM\Table(name="category")
   */
 class Category
 {
-
     /**
-     * Hook timestampable behavior
-     * updates createdAt, updatedAt fields
-     */
-    use TimestampableEntity;
-
-  /**
     * @ORM\Column(type="integer")
     * @ORM\Id
     * @ORM\GeneratedValue(strategy="AUTO")
     */
-  protected $id;
+    protected $id;
 
-  /**
-    * @ORM\Column(type="integer")
+    /**
+     * @ORM\Column(type="string")
+     */   
+    protected $title;
+
+     /**
+    * @ORM\OneToMany(targetEntity="Subcategory", mappedBy="category")
     */
-  protected $ablesky_id;
-
-  /**
-    * @ORM\Column(type="text")
-    */
-  protected $raw_json;
-
-  /**
-    * @ORM\Column(type="text")
-    */
-  protected $mobile_json;
-
-  /**
-    * @ORM\Column(type="string", length=100)
-    */
-  protected $md5;
-
-  /**
-    * @ORM\Column(type="string", length=10)
-    */
-  protected $type;
-
-  private $isSave;
-
-  public function __construct() {
-    $this->isSave = false;
-  }
+    protected $subcategory;
 
     /**
      * Get id
@@ -67,132 +39,67 @@ class Category
     }
 
     /**
-     * Set ableskyId
+     * Set title
      *
-     * @param integer $ableskyId
+     * @param string $title
      *
      * @return Category
      */
-    public function setAbleskyId($ableskyId)
+    public function setTitle($title)
     {
-        $this->ablesky_id = $ableskyId;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get ableskyId
-     *
-     * @return integer
-     */
-    public function getAbleskyId()
-    {
-        return $this->ablesky_id;
-    }
-
-    /**
-     * Set rawJson
-     *
-     * @param string $rawJson
-     *
-     * @return Category
-     */
-    public function setRawJson($rawJson)
-    {
-        $this->raw_json = $rawJson;
-
-        return $this;
-    }
-
-    /**
-     * Get rawJson
+     * Get title
      *
      * @return string
      */
-    public function getRawJson()
+    public function getTitle()
     {
-        return $this->raw_json;
+        return $this->title;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->course = new \Doctrine\Common\Collections\ArrayCollection();
+    } 
 
     /**
-     * Set mobileJson
+     * Add subcategory
      *
-     * @param string $mobileJson
+     * @param \AppBundle\Entity\Subcategory $subcategory
      *
      * @return Category
      */
-    public function setMobileJson($mobileJson)
+    public function addSubcategory(\AppBundle\Entity\Subcategory $subcategory)
     {
-        $this->mobile_json = $mobileJson;
+        $this->subcategory[] = $subcategory;
 
         return $this;
     }
 
     /**
-     * Get mobileJson
+     * Remove subcategory
      *
-     * @return string
+     * @param \AppBundle\Entity\Subcategory $subcategory
      */
-    public function getMobileJson()
+    public function removeSubcategory(\AppBundle\Entity\Subcategory $subcategory)
     {
-        return $this->mobile_json;
+        $this->subcategory->removeElement($subcategory);
     }
 
     /**
-     * Set md5
+     * Get subcategory
      *
-     * @param string $md5
-     *
-     * @return Category
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setMd5($md5)
+    public function getSubcategory()
     {
-        $this->md5 = $md5;
-
-        return $this;
-    }
-
-    /**
-     * Get md5
-     *
-     * @return string
-     */
-    public function getMd5()
-    {
-        return $this->md5;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Category
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-
-    public function getSave()
-    {
-        return $this->isSave;
-    }
-    public function setSave()
-    {
-        $this->isSave = true;
+        return $this->subcategory;
     }
 }

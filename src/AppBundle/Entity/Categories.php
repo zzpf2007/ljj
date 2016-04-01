@@ -4,7 +4,7 @@ namespace AppBundle\Entity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use AppBundle\Entity\Type;
+
 /**
   * @ORM\Entity() 
   * @ORM\Table(name="categories")
@@ -22,11 +22,6 @@ class Categories
      * @ORM\Column(type="string")
      */   
     protected $title;
-
-     /**
-     * @ORM\OneToMany(targetEntity="Type", mappedBy="categories", cascade={"persist", "remove"})
-     */
-    protected $type;
 
 
     /**

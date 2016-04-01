@@ -1,98 +1,63 @@
 <?php
-// src/AppBundle/Entity/Teacher.php
 namespace AppBundle\Entity;
 
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\BaseModel;
 use Doctrine\Common\Collections\ArrayCollection;
-use AppBundle\Entity\Course;
-
 
 /**
-  * @ORM\Entity
+  * @ORM\Entity() 
   * @ORM\Table(name="teacher")
   */
-class Teacher extends BaseModel
+class Teacher
 {
-  /**
+    /**
     * @ORM\Column(type="integer")
     * @ORM\Id
     * @ORM\GeneratedValue(strategy="AUTO")
     */
-  protected $id;
-
-  /**
-    * @ORM\Column(type="string", length=30)
-    */
-  protected $name;
-
-  /**
-    * @ORM\Column(type="string", length=10)
-    */
-  protected $work_exp;
-
-  /**
-    * @ORM\Column(type="string", length=100)
-    */
-  protected $major;
-
-  /**
-    * @ORM\Column(type="string", length=100)
-    */
-  protected $photo;
-
-  /**
-    * @ORM\Column(type="boolean")
-    */
-  protected $valid;
-
-  /**
-    * @ORM\OneToMany(targetEntity="\AppBundle\Entity\Course", mappedBy="teacher")
-    */
-  protected $courses;
-
-  public function __construct()
-  {
-      parent::__construct();
-      $this->courses = new ArrayCollection();
-      $this->work_exp = 'empty';
-      $this->valid = 'empty';
-      // your own logic
-  }
+    protected $id;
 
     /**
-     * Add course
-     *
-     * @param \AppBundle\Entity\Course $course
-     *
-     * @return Teacher
-     */
-    public function addCourse(\AppBundle\Entity\Course $course)
-    {
-        $this->courses[] = $course;
-
-        return $this;
-    }
+      * @ORM\Column(type="string", length=30)
+      */
+    protected $name;
 
     /**
-     * Remove course
-     *
-     * @param \AppBundle\Entity\Course $course
-     */
-    public function removeCourse(\AppBundle\Entity\Course $course)
-    {
-        $this->courses->removeElement($course);
-    }
+      * @ORM\Column(type="string", length=100)
+      */
+    protected $major;
+    
+    /**
+      * @ORM\Column(type="string", length=100)
+      */
+    protected $photo;
+
+     /**
+      * @ORM\Column(type="text")
+      */
+    protected $duration;
 
     /**
-     * Get courses
+      * @ORM\Column(type="integer")
+      */
+    protected $exp;
+
+   /**
+    * @ORM\OneToMany(targetEntity="Course", mappedBy="teacher")
+    */
+    protected $course;
+
+
+
+    /**
+     * Get id
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return integer
      */
-    public function getCourses()
+    public function getId()
     {
-        return $this->courses;
+        return $this->id;
     }
 
     /**
@@ -117,30 +82,6 @@ class Teacher extends BaseModel
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set workExp
-     *
-     * @param string $workExp
-     *
-     * @return Teacher
-     */
-    public function setWorkExp($workExp)
-    {
-        $this->work_exp = $workExp;
-
-        return $this;
-    }
-
-    /**
-     * Get workExp
-     *
-     * @return string
-     */
-    public function getWorkExp()
-    {
-        return $this->work_exp;
     }
 
     /**
@@ -190,28 +131,69 @@ class Teacher extends BaseModel
     {
         return $this->photo;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->course = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
-     * Set valid
+     * Add course
      *
-     * @param boolean $valid
+     * @param \AppBundle\Entity\Course $course
      *
      * @return Teacher
      */
-    public function setValid($valid)
+    public function addCourse(\AppBundle\Entity\Course $course)
     {
-        $this->valid = $valid;
+        $this->course[] = $course;
 
         return $this;
     }
 
     /**
-     * Get valid
+     * Remove course
      *
-     * @return boolean
+     * @param \AppBundle\Entity\Course $course
      */
-    public function getValid()
+    public function removeCourse(\AppBundle\Entity\Course $course)
     {
-        return $this->valid;
+        $this->course->removeElement($course);
+    }
+
+    /**
+     * Get course
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCourse()
+    {
+        return $this->course;
+    }
+
+    /**
+     * Set duration
+     *
+     * @param string $duration
+     *
+     * @return Teacher
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration
+     *
+     * @return string
+     */
+    public function getDuration()
+    {
+        return $this->duration;
     }
 }

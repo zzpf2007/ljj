@@ -29,31 +29,45 @@ class ApiMobileCourse extends ApiMobileMode
     $courselist = '';
     foreach ($courses as $index => $course) {
       // $result .= $index . ',';
-      $id = $course->getAbleskyId();
+      $id = $course->getId();
       $title = $course->getTitle();
-      $teacher = $course->getTeacher()->getName();
+      //$teacher = $course->getTeacher()->getName();
       $photo = $course->getPhoto();
       $tcvideourl = $course->getTcVideoUrl();
 
-      $type = "0";
 
       if ( $index < 8 ) {
         $type = "0";
-        $courselist .= sprintf('{"id":"%s","title":"%s","teacher":"%s","photo":"%s","tcvideourl" : "%s","type":"%s"},', $id, $title, $teacher, $photo, $tcvideourl, $type);
+        $courselist .= sprintf('{"id":"%s","title":"%s","photo":"%s","tcvideourl" : "%s"},', $id, $title, $photo, $tcvideourl);
       }
 
       if ( $index > 8 && $index < 16 ) {
         $type = "1";
-        $courselist .= sprintf('{"id":"%s","title":"%s","teacher":"%s","photo":"%s","tcvideourl" : "%s","type":"%s"},', $id, $title, $teacher, $photo,$tcvideourl, $type);
+        $courselist .= sprintf('{"id":"%s","title":"%s","photo":"%s","tcvideourl" : "%s"},', $id, $title,  $photo,$tcvideourl);
       }
 
       if ( $index > 16 && $index < 25 ) {
         $type = "2";
-        $courselist .= sprintf('{"id":"%s","title":"%s","teacher":"%s","photo":"%s","tcvideourl" : "%s","type":"%s"},', $id, $title, $teacher, $photo,$tcvideourl, $type);
+        $courselist .= sprintf('{"id":"%s","title":"%s","photo":"%s","tcvideourl" : "%s"},', $id, $title,  $photo,$tcvideourl);
       }
     }
 
-    $result .=  rtrim($courselist, ",") . ']}}';
+    //$result .=  rtrim($courselist, ",") . ']}}';
+     $result = '{"code":0,"message":"succeed!",
+                "result":{
+                  "list":[
+                    {"id":1,"title":"HTML/CSS","icon":"null","item_id":"1","click_url":"http://192.168.0.102:8000/api/mobile/school/course/1"},
+                    {"id":2,"title":"JavaScript","icon":"null","item_id":"2","click_url":"http://192.168.0.102:8000/api/mobile/school/course/2"},
+                    {"id":3,"title":"jQuery","icon":"null","item_id":"3","click_url":"http://192.168.0.102:8000/api/mobile/school/course/3"},
+                    {"id":4,"title":"bootstrip","icon":"null","item_id":"4","click_url":"http://192.168.0.102:8000/api/mobile/school/course/4"},
+                    {"id":5,"title":"node.JS","icon":"null","item_id":"5","click_url":"http://192.168.0.102:8000/api/mobile/school/course/5"},
+                    {"id":6,"title":"Ajax","icon":"null","item_id":"6","click_url":"http://192.168.0.102:8000/api/mobile/school/course/6"},
+                    {"id":7,"title":"HTML5","icon":"null","item_id":"7","click_url":"http://192.168.0.102:8000/api/mobile/school/course/7"},
+                    {"id":8,"title":"css3","icon":"null","item_id":"8","click_url":"http://192.168.0.102:8000/api/mobile/school/course/8"},
+                    {"id":9,"title":"更多..","icon":"null","item_id":"null","click_url":"null", "teacher":"null"}
+                  ]
+                }
+               }';
     return $result;
   }
 

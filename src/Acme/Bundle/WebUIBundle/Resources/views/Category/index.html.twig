@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg"> Course </strong> </div>
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">Category</strong> </div>
     </div>
 
     <div class="am-g">
@@ -15,35 +15,27 @@
 		              <td> </td>
 		              <td class="am-hide-sm-only">ID</td>
 		              <td class="am-hide-sm-only">Title</td>
-		              <td class="am-hide-sm-only">Photo</td>
-		              <td class="am-hide-sm-only">Duration</td>
-		              <td class="am-hide-sm-only">TcVideoUrl</td>
 		              <td>操作</td>
 		            </tr>
 
-                    {% for course in courses %}
+                    {% for category in categories %}
 	                    <tr>
 	                      <td><input type="checkbox" /></td>
-			              <td class="am-hide-sm-only">{{ course.id }}</td>
-			              <td class="am-hide-sm-only">{{ course.title }}</td>
-			              <td class="am-hide-sm-only">{{ course.photo }}</td>
-			              <td class="am-hide-sm-only">{{ course.duration }}</td>
-			              <td class="am-hide-sm-only">{{ course.tcvideourl }}</td>
+			              <td class="am-hide-sm-only">{{ category.id }}</td>
+			              <td class="am-hide-sm-only">{{ category.title}}</td>
 			              <td>
 			                <div class="am-btn-toolbar">
 			                  <div class="am-btn-group am-btn-group-xs">
 
-			                     <a href="{{ path('course_edit_path',{ id : course.id }) }}">
+			                     <a href=" {{ path('category_edit_path', { id : category.id })  }} ">
 					                 <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
-					             </a>  
-
-					            <div class="del">
-				                   {{ form_start( delete_form, { 'action': path( 'course_delete_path', { 'id' : course.id } ) } ) }}                    
+					             </a>   					               
+					             <div class="del">
+				                   {{ form_start( delete_form, { 'action': path( 'category_delete_path', { 'id' : category.id } ) } ) }}                    
 				                   {{ form_widget( delete_form ) }}  
 				                   <input type="submit" value="删除" />
 				                   {{ form_end(delete_form) }}
-				                </div> 					               
-					             
+				                 </div>
 			                  </div>
 			                </div>
 			              </td>

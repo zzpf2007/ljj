@@ -8,7 +8,7 @@ use AppBundle\Utility\WebApi\WebApiMode;
 use AppBundle\Utility\WebUtility\WebAuto;
 use AppBundle\Utility\WebUtility\WebJson;
 use AppBundle\Utility\Check\CheckData;
-use AppBundle\Entity\Category;
+use AppBundle\Entity\Categories;
 use AppBundle\Utility\WebApi\WebResponse\CategoryRootResponse;
 use AppBundle\Utility\WebApi\WebResponse\CategoryChildResponse;
 
@@ -34,8 +34,7 @@ class WebApiCategory extends WebApiMode
 
   public function getResult() 
   {
-    //return $this->webResponse->getResponse();
-
-    return new Response("{}");
+    return $this->webResponse->getResponse();
+   // return new Response("{}");
   }
 }

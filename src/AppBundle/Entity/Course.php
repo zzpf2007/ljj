@@ -3,16 +3,13 @@ namespace AppBundle\Entity;
 
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\BaseModel;
-//use Acme\Bundle\MobileBundle\Entity;
-use AppBundle\Entity\Teacher;
-use AppBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
-  * @ORM\Entity
+  * @ORM\Entity() 
   * @ORM\Table(name="course")
   */
-class Course extends BaseModel
+class Course
 {
     /**
     * @ORM\Column(type="integer")
@@ -22,18 +19,19 @@ class Course extends BaseModel
     protected $id;
 
     /**
-    * @ORM\Column(type="string", length=30)
-    */
+     * @ORM\Column(type="string")
+     */   
     protected $title;
 
     /**
-    * @ORM\Column(type="string", length=100)
-    */
+     * @ORM\Column(type="string")
+     */   
     protected $photo;
 
     /**
     * @ORM\Column(type="string", length=20, nullable=true)
     */
+
     protected $duration;
 
    /**
@@ -41,51 +39,24 @@ class Course extends BaseModel
     */
     protected $tcVideoUrl;
 
-    /**
-      * @ORM\ManyToOne(targetEntity="Teacher", inversedBy="courses")
+     /**
+      * @ORM\ManyToOne(targetEntity="Subcategory", inversedBy="course")
+      * @ORM\JoinColumn(name="subcategory_id", referencedColumnName="id")
+      */
+    protected $subcategory;
+
+     /**
+      * @ORM\ManyToOne(targetEntity="Teacher", inversedBy="course")
       * @ORM\JoinColumn(name="teacher_id", referencedColumnName="id")
       */
     protected $teacher;
 
-      /**
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="course", cascade={"persist"})
-     * @ORM\JoinTable(name="user_course",
-     * joinColumns={@ORM\JoinColumn(name="course_id", referencedColumnName="id")},
-     * inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
-     * )
-     */
-    private $user;
-
     /**
-     * @ORM\ManyToOne(targetEntity="Type", inversedBy="course")
-     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", onDelete="cascade")
-     */
-    protected $type; 
-
-    /**
-     * @ORM\OneToMany(targetEntity="Course", mappedBy="item", cascade={"persist", "remove"})
-     */
+    * @ORM\OneToMany(targetEntity="Item", mappedBy="course")
+    */
     protected $item;
 
-    private $isSave;
-
-    public function __construct() {
-        parent::__construct();
-        $this->isSave = false;
-        $this->title = 'empty';
-        $this->photo = 'empty';
-        $this->duration = '0:0:0';
-    }
-    public function getSave()
-    {
-        return $this->isSave;
-    }
-    public function setSave()
-    {
-        $this->isSave = true;
-    }
-
-     /**
+    /**
      * Get id
      *
      * @return integer
@@ -93,31 +64,6 @@ class Course extends BaseModel
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set teacher
-     *
-     * @param \AppBUndle\Entity\Teacher $teacher
-     *
-     * @return Course
-     */
-    public function setTeacher(Teacher $teacher = null)
-
-    {
-        $this->teacher = $teacher;
-
-        return $this;
-    }
-
-    /**
-     * Get teacher
-     *
-     * @return \Acme\Bundle\MobileBundle\Entity\Teacher
-     */
-    public function getTeacher()
-    {
-        return $this->teacher;
     }
 
     /**
@@ -192,7 +138,6 @@ class Course extends BaseModel
         return $this->duration;
     }
 
-  
     /**
      * Set tcVideoUrl
      *
@@ -217,74 +162,45 @@ class Course extends BaseModel
         return $this->tcVideoUrl;
     }
 
-
     /**
-     * Add user
+     * Set teacher
      *
-     * @param \AppBundle\Entity\User $user
+     * @param \AppBundle\Entity\Teacher $teacher
      *
      * @return Course
      */
-    public function addUser(\AppBundle\Entity\User $user)
+    public function setTeacher(\AppBundle\Entity\Teacher $teacher = null)
     {
-        $this->user[] = $user;
+        $this->teacher = $teacher;
 
         return $this;
     }
 
     /**
-     * Remove user
+     * Get teacher
      *
-     * @param \AppBundle\Entity\User $user
+     * @return \AppBundle\Entity\Teacher
      */
-    public function removeUser(\AppBundle\Entity\User $user)
+    public function getTeacher()
     {
-        $this->user->removeElement($user);
+        return $this->teacher;
     }
-
     /**
-     * Get user
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * Constructor
      */
-    public function getUser()
+    public function __construct()
     {
-        return $this->user;
-    }
-
-
-    /**
-     * Set type
-     *
-     * @param \AppBundle\Entity\Type $type
-     *
-     * @return Course
-     */
-    public function setType(\AppBundle\Entity\Type $type = null)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return \AppBundle\Entity\Type
-     */
-    public function getType()
-    {
-        return $this->type;
+        $this->item = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Add item
      *
-     * @param \AppBundle\Entity\Course $item
+     * @param \AppBundle\Entity\Item $item
      *
      * @return Course
      */
-    public function addItem(\AppBundle\Entity\Course $item)
+    public function addItem(\AppBundle\Entity\Item $item)
     {
         $this->item[] = $item;
 
@@ -294,9 +210,9 @@ class Course extends BaseModel
     /**
      * Remove item
      *
-     * @param \AppBundle\Entity\Course $item
+     * @param \AppBundle\Entity\Item $item
      */
-    public function removeItem(\AppBundle\Entity\Course $item)
+    public function removeItem(\AppBundle\Entity\Item $item)
     {
         $this->item->removeElement($item);
     }
@@ -309,5 +225,29 @@ class Course extends BaseModel
     public function getItem()
     {
         return $this->item;
+    }
+
+    /**
+     * Set subcategory
+     *
+     * @param \AppBundle\Entity\Subcategory $subcategory
+     *
+     * @return Course
+     */
+    public function setSubcategory(\AppBundle\Entity\Subcategory $subcategory = null)
+    {
+        $this->subcategory = $subcategory;
+
+        return $this;
+    }
+
+    /**
+     * Get subcategory
+     *
+     * @return \AppBundle\Entity\Subcategory
+     */
+    public function getSubcategory()
+    {
+        return $this->subcategory;
     }
 }

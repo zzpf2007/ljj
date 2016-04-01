@@ -1,53 +1,35 @@
-
-{% extends "AcmeWebUIBundle::layouts/accountbase.html.twig" %}
+{% extends "AcmeWebUIBundle::layouts/adminskin.html.twig" %}
 
 {% block content %}
 
    {{ form_start(edit_form) }}
 
       <div class="cont">
-		<div class="new_form">
-	 
-			<label for="form_name" class="lab">name</label>
-			{{ form_widget( edit_form.name,{'attr': {'class': 'inp'}} ) }}
 
-	      	<label for="form_major" class="lab">major</label>
-		  	{{ form_widget( edit_form.major,{'attr': {'class': 'inp'}} ) }}
+  		    <div class="edit_form">
+  	 
+        			<label for="edit_form.name" class="lab"> Name </label>
+        			{{ form_widget( edit_form.name,{'attr': {'class': 'inp'}} ) }}
 
-            <label for="form_photo" class="lab">photo</label>
-	        {{ form_widget( edit_form.photo,{'attr': {'class': 'inp'}} ) }}
+              <label for="edit_form.major" class="lab"> Major </label>
+              {{ form_widget( edit_form.major,{'attr': {'class': 'inp'}} ) }}
 
-        </div>
+              <label for="edit_form.photo" class="lab"> Photo </label>
+              {{ form_widget( edit_form.photo,{'attr': {'class': 'inp'}} ) }}
+
+              <label for="edit_form.duration" class="lab"> Duration </label>
+              {{ form_widget( edit_form.duration,{'attr': {'class': 'inp'}} ) }}
+
+              <label for="edit_form.exp" class="lab"> Exp </label>
+              {{ form_widget( edit_form.exp,{'attr': {'class': 'inp'}} ) }}
+
+          </div>
+
       </div>
-       <input type="submit" value="修改" style="margin-left:270px;margin-top:20px;width:100px;height:30px;">
+
+      <input type="submit" value="修改" style="margin-left:270px;margin-top:20px;width:100px;height:30px;">
+
    {{ form_end(edit_form) }}
 
  
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
