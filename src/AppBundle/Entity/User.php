@@ -83,28 +83,4 @@ class User extends BaseUser
     }
 
     
-
-    /**
-     * Set account
-     *
-     * @param \AppBundle\Entity\Account $account
-     *
-     * @return User
-     */
-    public function setAccount(\AppBundle\Entity\Account $account = null)
-    {
-        $this->account = $account;
-
-        return $this;
-    }
-
-    /**
-     * Get account
-     *
-     * @return \AppBundle\Entity\Account
-     */
-    public function getAccount()
-    {
-        return $this->account;
-    }
 }
