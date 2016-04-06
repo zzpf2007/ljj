@@ -33,9 +33,9 @@ class CourseController extends Controller
               $lst[] = sprintf('{"id" : "%s", "title" : "%s","photo":"%s","duration":"%s","tcvideourl":"%s"}', 
                                 $item->getId(),
                                 $item->getTitle(),
-                                $course->getPhoto(),
-                                $course->getDuration(),
-                                $course->gettcVideoUrl()
+                                $item->getPhoto(),
+                                $item->getDuration(),
+                                $item->getTcVideoUrl()
               );
           }
 
@@ -86,11 +86,11 @@ class CourseController extends Controller
           $courses = $teacher->getCourse();
 
           foreach ($courses as $course) {
-
-             $sub[] = sprintf('{"id":"%s","title":"%s","photo":"%s","duration":"%s","tcvideourl":"%s"}', $course->getId(), $course->getTitle(), $course->getPhoto(),$course->getDuration(), $course->gettcVideoUrl());
+            
+             $sub[] = sprintf('{"id":"%s","title":"%s","photo":"%s","duration":"%s","tcvideourl":"%s","teacher":"%s"}', $course->getId(), $course->getTitle(), $course->getPhoto(),$course->getDuration(), $course->gettcVideoUrl(),$teacher->getName());
           }
           
-             $top[] = sprintf('{"name":"%s", "courses":[%s]}', $teacher->getName(), implode(',', $sub));
+             $top[] = sprintf('{ "courses":[%s]}', implode(',', $sub));
 
       }
 

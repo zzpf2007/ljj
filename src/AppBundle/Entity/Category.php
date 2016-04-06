@@ -102,4 +102,28 @@ class Category
     {
         return $this->subcategory;
     }
+
+    /**
+     * Set clickUrl
+     *
+     * @param string $clickUrl
+     *
+     * @return Category
+     */
+    public function setClickUrl($clickUrl)
+    {
+        $this->click_url = $clickUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get clickUrl
+     *
+     * @return string
+     */
+    public function getClickUrl()
+    {
+        return $this->click_url;
+    }
 }
