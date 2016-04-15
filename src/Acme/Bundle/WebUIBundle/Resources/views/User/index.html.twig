@@ -1,0 +1,60 @@
+{% extends 'AcmeWebUIBundle::layouts/adminskin.html.twig' %}
+
+{% block content %}
+
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">User</strong> </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+      
+	          <table class="am-table am-table-striped am-table-hover table-main">
+		        
+		            <tr>
+		              <td> </td>
+		              <td class="am-hide-sm-only">ID</td>
+		              <td class="am-hide-sm-only">UserName</td>
+		              <td class="am-hide-sm-only">Password</td>
+		              <td class="am-hide-sm-only">Mobile</td>
+		              <td class="am-hide-sm-only">Email</td>
+		              <td>操作</td>
+		            </tr>
+
+                    {% for user in users %}
+	                    <tr>
+	                      <td><input type="checkbox" /></td>
+			              <td class="am-hide-sm-only">{{ user.id }}</td>
+			              <td class="am-hide-sm-only">{{ user.username }}</td>
+			              <td class="am-hide-sm-only">{{ user.password }}</td>
+			              <td class="am-hide-sm-only">{{ user.mobile }}</td>
+			              <td class="am-hide-sm-only">{{ user.email }}</td>
+			              <td>
+			                <div class="am-btn-toolbar">
+			                  <div class="am-btn-group am-btn-group-xs">
+
+			                     <a href=" {{ path('user_edit_path', { id : user.id })  }} ">
+					                 <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+					             </a>  
+					             <a href=" {{ path('user_reset_path', { id : user.id })  }} ">
+					                 <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 密码重置 </button>
+					             </a>   	 					               
+					             <div class="dell">
+				                   {{ form_start( delete_form, { 'action': path( 'user_delete_path', { 'id' : user.id } ) } ) }}                    
+				                   {{ form_widget( delete_form ) }}  
+				                   <input type="submit" value="删除" />
+				                   {{ form_end(delete_form) }}
+				                 </div>
+			                  </div>
+			                </div>
+			              </td>
+	                    </tr>
+                    {% endfor %}
+		    
+	          </table>
+         
+      </div>
+
+    </div>
+ 
+{% endblock %}

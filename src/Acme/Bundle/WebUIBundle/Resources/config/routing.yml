@@ -2,6 +2,70 @@ n acme_web_ui_homepage:
     path:     /hello/{name}
     defaults: { _controller: AcmeWebUIBundle:Default:index }
 
+#video部分    
+
+video_index_path:
+  path: '/video/index/{id}'
+  defaults: { _controller: AcmeWebUIBundle:Video:index } 
+
+#record部分
+
+record_index_path:
+  path: '/record/index'
+  defaults: { _controller: AcmeWebUIBundle:Record:index }  
+
+#reserve部分
+
+reserve_index_path:
+  path: '/reserve/index'
+  defaults: { _controller: AcmeWebUIBundle:Reserve:index }  
+
+#role部分  
+
+role_index_path:
+  path: '/role/index'
+  defaults: { _controller: AcmeWebUIBundle:Role:index }
+
+role_edit_path:
+  path: '/role/{id}/edit'
+  defaults: { _controller: AcmeWebUIBundle:Role:edit } 
+
+role_create_path:
+  path: '/role/create'
+  defaults: { _controller: AcmeWebUIBundle:Role:create } 
+
+role_delete_path:
+  path: '/role/{id}'
+  defaults: { _controller: AcmeWebUIBundle:Role:delete }
+  requirements:
+      _method:  DELETE   
+
+#group部分
+
+group_index_path:
+    path: '/group/index'
+    defaults: { _controller: AcmeWebUIBundle:Group:index} 
+
+group_edit_path:
+  path: '/group/{id}/edit'
+  defaults: { _controller: AcmeWebUIBundle:Group:edit } 
+
+group_create_path:
+  path: '/group/create'
+  defaults: { _controller: AcmeWebUIBundle:Group:create } 
+
+group_delete_path:
+  path: '/group/{id}'
+  defaults: { _controller: AcmeWebUIBundle:Group:delete }
+  requirements:
+      _method:  DELETE   
+
+#account部分
+
+account_index_path:
+  path: '/account/index'
+  defaults: { _controller: AcmeWebUIBundle:Account:index }
+
 #course_item部分
 
 item_index_path:
@@ -104,9 +168,43 @@ category_delete_path:
 
 #进入后台
 
+user_in_path:
+  path: '/user/in'
+  defaults: { _controller: AcmeWebUIBundle:User:in }
+
+user_text_path:
+  path: '/user/text'
+  defaults: { _controller: AcmeWebUIBundle:User:text }
+
+user_auth_path:
+  path: '/user/{id}/auth'
+  defaults: { _controller: AcmeWebUIBundle:User:auth }
+
 user_path:
   path: '/admin'
   defaults: { _controller: AcmeWebUIBundle:User:admin }
+
+user_index_path:
+  path: '/user/index'
+  defaults: { _controller: AcmeWebUIBundle:User:index }
+
+user_edit_path:
+  path: '/user/{id}/edit'
+  defaults: { _controller: AcmeWebUIBundle:User:edit }
+
+user_create_path:
+  path: '/user/create'
+  defaults: { _controller: AcmeWebUIBundle:User:create }
+
+user_reset_path:
+  path: '/user/{id}/reset'
+  defaults: { _controller: AcmeWebUIBundle:User:reset }
+
+user_delete_path:
+  path: '/user/{id}'
+  defaults: { _controller: AcmeWebUIBundle:User:delete }
+  requirements:
+      _method:  DELETE
 
 #前台页面
 

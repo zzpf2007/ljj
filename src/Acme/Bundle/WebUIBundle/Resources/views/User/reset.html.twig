@@ -1,0 +1,23 @@
+{% extends "AcmeWebUIBundle::layouts/adminskin.html.twig" %}
+
+{% block content %}
+
+   {{ form_start(edit_form) }}
+
+      <div class="cont">
+
+  		    <div class="edit_form">
+  	 
+        			<label for="edit_form.password" class="lab"> ResetPassword </label>
+        			{{ form_widget( edit_form.password,{'attr': {'class': 'inp'}} ) }}
+
+          </div>
+
+      </div>
+
+      <input type="submit" value="修改" style="margin-left:270px;margin-top:20px;width:100px;height:30px;">
+
+   {{ form_end(edit_form) }}
+
+ 
+{% endblock %}

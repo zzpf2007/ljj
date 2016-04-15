@@ -23,7 +23,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *              name = "email_canonical",
  *              nullable = true,
  *              unique= false
- *          )
+ *          ) 
  *      )
  * })
  */
@@ -57,6 +57,20 @@ class User extends BaseUser
     protected $mobile = '';
 
 
+    /**
+     * @ORM\OneToOne(targetEntity="Account", mappedBy="user")
+     */
+    protected $account;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Reserve", mappedBy="user", cascade={"persist", "remove"})
+     */
+    protected $reserve;
+
+     /**
+     * @ORM\OneToMany(targetEntity="Record", mappedBy="user", cascade={"persist", "remove"})
+     */
+    protected $record;
 
     /**
      * Set mobile
@@ -83,4 +97,96 @@ class User extends BaseUser
     }
 
     
+
+    /**
+     * Set account
+     *
+     * @param \AppBundle\Entity\Account $account
+     *
+     * @return User
+     */
+    public function setAccount(\AppBundle\Entity\Account $account = null)
+    {
+        $this->account = $account;
+
+        return $this;
+    }
+
+    /**
+     * Get account
+     *
+     * @return \AppBundle\Entity\Account
+     */
+    public function getAccount()
+    {
+        return $this->account;
+    }
+
+    /**
+     * Add reserve
+     *
+     * @param \AppBundle\Entity\Reserve $reserve
+     *
+     * @return User
+     */
+    public function addReserve(\AppBundle\Entity\Reserve $reserve)
+    {
+        $this->reserve[] = $reserve;
+
+        return $this;
+    }
+
+    /**
+     * Remove reserve
+     *
+     * @param \AppBundle\Entity\Reserve $reserve
+     */
+    public function removeReserve(\AppBundle\Entity\Reserve $reserve)
+    {
+        $this->reserve->removeElement($reserve);
+    }
+
+    /**
+     * Get reserve
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReserve()
+    {
+        return $this->reserve;
+    }
+
+    /**
+     * Add record
+     *
+     * @param \AppBundle\Entity\Record $record
+     *
+     * @return User
+     */
+    public function addRecord(\AppBundle\Entity\Record $record)
+    {
+        $this->record[] = $record;
+
+        return $this;
+    }
+
+    /**
+     * Remove record
+     *
+     * @param \AppBundle\Entity\Record $record
+     */
+    public function removeRecord(\AppBundle\Entity\Record $record)
+    {
+        $this->record->removeElement($record);
+    }
+
+    /**
+     * Get record
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRecord()
+    {
+        return $this->record;
+    }
 }

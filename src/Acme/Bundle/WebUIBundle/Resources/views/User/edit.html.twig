@@ -1,0 +1,29 @@
+{% extends "AcmeWebUIBundle::layouts/adminskin.html.twig" %}
+
+{% block content %}
+
+   {{ form_start(edit_form) }}
+
+      <div class="cont">
+
+  		    <div class="edit_form">
+  	 
+        			<label for="edit_form.username" class="lab"> UserName </label>
+        			{{ form_widget( edit_form.username,{'attr': {'class': 'inp'}} ) }}
+
+              <label for="edit_form.mobile" class="lab"> Mobile </label>
+              {{ form_widget( edit_form.mobile,{'attr': {'class': 'inp'}} ) }}
+
+              <label for="edit_form.email" class="lab"> Email </label>
+              {{ form_widget( edit_form.email,{'attr': {'class': 'inp'}} ) }}
+
+          </div>
+
+      </div>
+
+      <input type="submit" value="修改" style="margin-left:270px;margin-top:20px;width:100px;height:30px;">
+
+   {{ form_end(edit_form) }}
+
+ 
+{% endblock %}

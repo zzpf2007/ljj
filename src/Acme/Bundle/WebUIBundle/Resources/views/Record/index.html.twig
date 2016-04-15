@@ -1,0 +1,36 @@
+{% extends 'AcmeWebUIBundle::layouts/adminskin.html.twig' %}
+
+{% block content %}
+
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg"> Record </strong> </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">        
+          {% for user in users %}
+    	       <ul>
+               <li>用户 -- {{ user.username }}</li>
+                  {% for records in user.record %}   
+                     <ul>
+                        {% for courses in records.reserve.course  %}
+                             <ul>
+                                <li>购买的课程 -- {{ courses.title }}</li>
+                                <li>购买的价格 -- {{ courses.price }}</li>
+                             </ul>                              
+                        {% endfor %}
+                        <li>订单数量 -- {{ records.reserve.number }}</li>
+                        <li>订单状态 -- {{ records.reserve.state }}</li>
+                        <li>订单生成时间 -- {{ records.reserve.time|date('Y-m-d H:i:s') }}</li>      
+                        <li>交易金额 -- {{ records.amount }}</li>
+                        <li>交易后余额 -- {{ records.laterbalance }}</li>
+                        <li>交易类型 -- {{ records.state }}</li>
+                        <li>交易时间 -- {{ records.time|date('Y-m-d H:i:s') }}</li>
+                     </ul>                  
+                  {% endfor %}
+    	       </ul>           
+          {% endfor %}	    
+      </div>
+    </div>
+ 
+{% endblock %}

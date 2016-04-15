@@ -1,0 +1,29 @@
+{% extends 'AcmeWebUIBundle::layouts/adminskin.html.twig' %}
+
+{% block content %}
+
+   {{ form_start(new_form) }}
+
+      <div class="cont">
+         <div class="new_form">
+
+            <label for="new_form.username" class="lab"> UserName </label>
+            {{ form_widget(new_form.username,{'attr': {'class': 'inp'}}) }}
+
+             <label for="new_form.password" class="lab"> Password </label>
+            {{ form_widget(new_form.password,{'attr': {'class': 'inp'}}) }}
+
+             <label for="new_form.mobile" class="lab"> Mobile </label>
+            {{ form_widget(new_form.mobile,{'attr': {'class': 'inp'}}) }}
+
+             <label for="new_form.email" class="lab"> Email </label>
+            {{ form_widget(new_form.email,{'attr': {'class': 'inp'}}) }}
+     
+         </div>
+      </div>  
+
+      <input type="submit" value="添加" style="margin-left:280px;margin-top:30px;width:100px;height:30px;">
+
+    {{ form_end(new_form) }}
+
+{% endblock %}

@@ -39,7 +39,22 @@
   <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
     <div class="am-offcanvas-bar admin-offcanvas-bar">
       <ul class="am-list admin-sidebar-list">
-        <li><a href="admin-index.html"><span class="am-icon-home"></span> 首页 </a></li>
+        <li><a href=""><span class="am-icon-home"></span> 首页 </a></li>
+        <li><a href="{{ path('user_in_path') }}"><span class="am-icon-th"> ADMIN </span></a></li> 
+   {% if is_granted('ROLE_USER') %}
+
+        <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse5-nav'}"><span class="am-icon-file"></span> User <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse5-nav">  
+            <li><a href="{{ path('user_index_path') }}"><span class="am-icon-puzzle-piece"></span> Index </a></li>
+            <li><a href="{{ path('user_create_path') }}"><span class="am-icon-th"></span> Add </a></li>
+            <li><a href="{{ path('user_text_path') }}"><span class="am-icon-th"></span> Auth </a></li> 
+          </ul>
+        </li>
+
+        <li><a href="{{ path('account_index_path') }}"><span class="am-icon-table"></span> Account </a></li>
+        <li><a href="{{ path('reserve_index_path') }}"><span class="am-icon-table"></span> Reserve </a></li>
+        <li><a href="{{ path('record_index_path') }}"><span class="am-icon-table"></span> Record </a></li>
 
         <li class="admin-parent">
           <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> Category <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
@@ -81,6 +96,21 @@
           </ul>
         </li>
         
+      {% elseif is_granted('ROLE_TEACHER') %}
+
+         <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse3-nav'}"><span class="am-icon-file"></span> Course <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse3-nav">
+            <li><a href="{{ path('course_index_path') }}"><span class="am-icon-puzzle-piece"></span> Index </a></li>
+            <li><a href="{{ path('course_create_path') }}"><span class="am-icon-th"></span> Add </a></li>
+          </ul>
+        </li>
+       
+       {% else %}
+         
+         <b>你没有权限访问</b>
+          
+       {% endif %}     
       </ul>
 
       <div class="am-panel am-panel-default admin-sidebar-panel">

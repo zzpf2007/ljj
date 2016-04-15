@@ -1,0 +1,23 @@
+{% extends "AcmeWebUIBundle::layouts/adminskin.html.twig" %}
+
+{% block content %}
+
+   {{ form_start(edit_form) }}
+
+      <div class="cont">
+
+  		    <div class="edit_form">
+
+              <label for="edit_form.roles" class="lab"> Roles </label>
+              {{ form_widget( edit_form.roles,{'attr': {'class': 'inp'}} ) }}
+
+          </div>
+
+      </div>
+
+      <input type="submit" value="修改" style="margin-left:270px;margin-top:100px;width:100px;height:30px;">
+
+   {{ form_end(edit_form) }}
+
+ 
+{% endblock %}

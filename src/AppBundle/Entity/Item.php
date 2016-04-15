@@ -174,4 +174,28 @@ class Item
     {
         return $this->course;
     }
+
+    /**
+     * Set shareVideoUrl
+     *
+     * @param string $shareVideoUrl
+     *
+     * @return Item
+     */
+    public function setShareVideoUrl($shareVideoUrl)
+    {
+        $this->shareVideoUrl = $shareVideoUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get shareVideoUrl
+     *
+     * @return string
+     */
+    public function getShareVideoUrl()
+    {
+        return $this->shareVideoUrl;
+    }
 }

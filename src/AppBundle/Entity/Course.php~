@@ -39,6 +39,16 @@ class Course
     */
     protected $tcVideoUrl;
 
+    /**
+    * @ORM\Column(type="decimal",scale=2)
+    */
+    protected $price;
+
+    /**
+    * @ORM\Column(type="integer", nullable=true)
+    */
+    protected $type;
+
      /**
       * @ORM\ManyToOne(targetEntity="Subcategory", inversedBy="course")
       * @ORM\JoinColumn(name="subcategory_id", referencedColumnName="id")
@@ -55,6 +65,13 @@ class Course
     * @ORM\OneToMany(targetEntity="Item", mappedBy="course")
     */
     protected $item;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Reserve",inversedBy="course")
+     * @ORM\JoinTable(name="course_reserve")
+     **/
+    private $reserve;
+
 
     /**
      * Get id
@@ -249,5 +266,87 @@ class Course
     public function getSubcategory()
     {
         return $this->subcategory;
+    }
+
+    /**
+     * Set price
+     *
+     * @param string $price
+     *
+     * @return Course
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     *
+     * @return Course
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Add reserve
+     *
+     * @param \AppBundle\Entity\Reserve $reserve
+     *
+     * @return Course
+     */
+    public function addReserve(\AppBundle\Entity\Reserve $reserve)
+    {
+        $this->reserve[] = $reserve;
+
+        return $this;
+    }
+
+    /**
+     * Remove reserve
+     *
+     * @param \AppBundle\Entity\Reserve $reserve
+     */
+    public function removeReserve(\AppBundle\Entity\Reserve $reserve)
+    {
+        $this->reserve->removeElement($reserve);
+    }
+
+    /**
+     * Get reserve
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReserve()
+    {
+        return $this->reserve;
     }
 }

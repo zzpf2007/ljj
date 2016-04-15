@@ -1,0 +1,31 @@
+{% extends 'AcmeWebUIBundle::layouts/adminskin.html.twig' %}
+
+{% block content %}
+
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg"> Reserve </strong> </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+         
+        {% for user in users %}
+	       <ul>
+             <li>用户 -- {{ user.username }}</li>
+
+                {% for reserves in user.reserve %}
+                    <ul>
+                       <li>数量 -- {{ reserves.number }}</li> 
+                       <li>状态 -- {{ reserves.state }}</li>
+                       <li>时间 -- {{ reserves.time|date('Y-m-d H:i:s')}}</li>
+                    </ul>
+                {% endfor %}
+
+	       </ul>           
+        {% endfor %}
+		    
+      </div>
+
+    </div>
+ 
+{% endblock %}

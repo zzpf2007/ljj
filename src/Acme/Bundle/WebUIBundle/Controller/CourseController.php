@@ -45,6 +45,7 @@ class CourseController extends Controller
         $edit_form = $this->createFormBuilder($course)
                 ->add('title', null) 
                 ->add('photo', null) 
+                ->add('price', null) 
                 ->add('duration', null) 
                 ->add('tcvideourl', null)    
                 ->getForm();
@@ -92,7 +93,8 @@ class CourseController extends Controller
         // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
         $new_form = $this->createFormBuilder($course)             
                       ->add('title', null) 
-                      ->add('photo', null) 
+                      ->add('photo', null)
+                      ->add('price', null)  
                       ->add('duration', null) 
                       ->add('tcvideourl', null)    
                       ->add('subcategory', 'choice', array('choices' => $attr)) 
