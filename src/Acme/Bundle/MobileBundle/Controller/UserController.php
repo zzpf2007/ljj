@@ -25,7 +25,7 @@ class UserController extends Controller
       $account = $user->getAccount();
 
       $name = $account && $account->getName() ? $account->getName() : '傻头傻脑';
-      $photo = $account && $account->getPhoto() ? $account->getPhoto() : 'http://img4.imgtn.bdimg.com/it/u=172112303,3232882607&fm=21&gp=0.jpg';  
+      $photo = $account && $account->getPhoto() ? $account->getPhoto() : 'http://imgcache.qq.com/open_proj/proj_qcloud_v2/gateway/portal/css/img/home/solution/video/2.png';  
       $signature = $account && $account->getSignature() ? $account->getSignature() : '';
       $phoneNumber = $user->getUsername();
       $otherNumber = $account && $account->getOthernumber() ? $account->getOthernumber() : '';

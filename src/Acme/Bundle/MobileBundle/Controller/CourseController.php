@@ -30,7 +30,7 @@ class CourseController extends Controller
           $lst = array();
 
           foreach($items as  $key => $item){
-              $lst[] = sprintf('{"id" : "%s", "title" : "%s","photo":"%s","duration":"%s","tcvideourl":"%s","sharevideourl":"http://192.168.0.125:8000/video/index/%s"}', 
+              $lst[] = sprintf('{"id" : "%s", "title" : "%s","photo":"%s","duration":"%s","tcvideourl":"%s","sharevideourl":"app.ljj.cn/video/index/%s"}', 
                                 $item->getId(),
                                 $item->getTitle(),
                                 $item->getPhoto(),
