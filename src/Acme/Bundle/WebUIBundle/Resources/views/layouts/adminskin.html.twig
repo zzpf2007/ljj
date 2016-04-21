@@ -41,7 +41,7 @@
       <ul class="am-list admin-sidebar-list">
         <li><a href=""><span class="am-icon-home"></span> 首页 </a></li>
         <li><a href="{{ path('user_in_path') }}"><span class="am-icon-th"> ADMIN </span></a></li> 
-   {% if is_granted('ROLE_USER') %}
+   {% if is_granted('ROLE_ADMIN') %}
 
         <li class="admin-parent">
           <a class="am-cf" data-am-collapse="{target: '#collapse5-nav'}"><span class="am-icon-file"></span> User <span class="am-icon-angle-right am-fr am-margin-right"></span></a>

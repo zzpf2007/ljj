@@ -1,6 +1,7 @@
 n acme_web_ui_homepage:
     path:     /hello/{name}
     defaults: { _controller: AcmeWebUIBundle:Default:index }
+    
 
 #video部分    
 
@@ -65,6 +66,12 @@ group_delete_path:
 account_index_path:
   path: '/account/index'
   defaults: { _controller: AcmeWebUIBundle:Account:index }
+
+account_delete_path:
+  path: '/account/{id}'
+  defaults: { _controller: AcmeWebUIBundle:Account:delete }
+  requirements:
+      _method:  DELETE 
 
 #course_item部分
 

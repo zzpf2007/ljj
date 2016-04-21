@@ -15,7 +15,7 @@ class Register extends UserMode
 
   public function __construct( $container, $data )
   {
-
+    //echo 111;
     parent::__construct( $container );
     $this->requestData = $data;
     $this->logger = $this->container->get( 'my_service.logger' );
@@ -23,7 +23,7 @@ class Register extends UserMode
   
   public function getResult()
   {
- 
+    //echo 222;
     $result = $this->postAbleSkyResponse( $this->buildPayloadData() );
     // $this->checkResponseValidAndSaveUser( $result );
 
@@ -38,7 +38,7 @@ class Register extends UserMode
 
   private function buildPayloadData()
   {
- 
+    // echo 333;
     $retArray = array();
 
     // list( $username, $password, $email ) = $this->parseRequestData();
@@ -63,7 +63,7 @@ class Register extends UserMode
 
   private function parseRequestData()
   {
-
+    // echo 444;
     $retArray = array( 'username' => 'empty', 'password' => 'empty', 'email' => '', 'mobile' => '');
     $jsonObj = json_decode($this->requestData);
 
@@ -77,7 +77,7 @@ class Register extends UserMode
 
   private function createUser( $username, $password, $email = '', $mobile = '' )
   {
-
+    //echo 555;
     $newUser = new User();
     $newUser->setUsername( $username );
     $newUser->setPassword( $this->encodePassword( $newUser, $password ) );
@@ -89,10 +89,10 @@ class Register extends UserMode
 
   private function checkResponseValidAndSaveUser( $result )
   {
-
+    //echo 666;
     $retJson = json_decode( $result );
 
-    if ( isset( $retJson->{'result'} ) ) {
+    if ( isset( $retJson->{' result'} ) ) {
       if ( isset( $retJson->{'result'}->{'code'} ) ) {
         $code = $retJson->{'result'}->{'code'};
         if ( $code == '0' ) {
@@ -105,13 +105,36 @@ class Register extends UserMode
 
   private function saveUserResult()
   {
+  //echo 777;
+    
+    $username= $this->parseRequestData()['username'];
+
+    $repository = $this->getDoctrine()
+                ->getRepository('AppBundle:User');
+
+    $user = $repository->findOneBy(
+        array('username' => $username)
+    );
+
+    // echo $user;die;
    
-    $this->saveToDB( $this->user );
-    $id = $this->user->getId();
-    //var_dump($this->user->getId());
+    if(!$user && $username != null){
+
+        $this->saveToDB( $this->user );
+        $id = $this->user->getId();
+        //var_dump($this->user->getId());
+        //die;
+        $content = sprintf('{"message":"请求成功！","code":"0","id":"%s"}'
+                           ,$id);  
+      }else{
+
+        $content = sprintf('{"message":"用户名重复或为空，请重新输入","code":"1"}');
+    }
+    
+    //echo $username;
     //die;
-    $content = sprintf('{"message":"请求成功！","code":"0","id":"%s"}'
-                         ,$id);
+   
+  
     return $content;
     //return $this->buildSuccessResponse();
     // return '{ "result" : { "message" : "succeed!", "code" : "0" }  }';

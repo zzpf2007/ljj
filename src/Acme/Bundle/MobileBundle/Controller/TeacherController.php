@@ -81,4 +81,74 @@ class TeacherController extends Controller
       return new Response( $content );
     }  
   }
+
+    /**
+     * @Route("/search/{title}")
+     */
+      public function searchAction(Request $request,$title)
+      {  
+            
+           $content = ''; 
+
+           if($title)
+           {
+                 $em = $this->getDoctrine()->getManager();
+                 $query = $em->createQuery(   
+                 'SELECT u FROM AppBundle:Course u WHERE u.title LIKE :title ORDER BY u.id DESC'   
+                 )->setParameter('title','%'.$title.'%');   
+               
+                 $results = $query->getResult(); 
+
+                 //var_dump($results);die;
+
+                 $lst[] = array();
+
+                 foreach( $results as $key => $result ){
+
+                  //var_dump($result);die;
+
+                   $lst[] = sprintf('{"id":"%s","title":"%s","photo":"%s","price":"%s"}',
+                          $result->getId(),
+                          $result->getTitle(),
+                          $result->getPhoto(),
+                          $result->getPrice()
+                   );        
+                 }
+
+ 
+                 $em = $this->getDoctrine()->getManager();
+                 $query = $em->createQuery(   
+                 'SELECT u FROM AppBundle:Teacher u WHERE u.name LIKE :name ORDER BY u.id DESC'   
+                 )->setParameter('name','%'.$title.'%');   
+               
+                 $result = $query->getResult(); 
+
+                 //var_dump($results);die;
+
+                 $list[] = array();
+
+                 foreach( $result as $key => $resul ){
+
+                  //var_dump($result);die;
+
+                   $list[] = sprintf('{"id":"%s","name":"%s","major":"%s","photo":"%s","duration":"%s","exp":"%s"}',
+                          $resul->getId(),
+                          $resul->getName(),
+                          $resul->getMajor(),
+                          $resul->getPhoto(),
+                          $resul->getDuration(),
+                          $resul->getExp()
+                   );        
+                 }
+                   
+              
+                 $content = sprintf('{"course":[%s],"teacher":[%s]}',implode(',', array_filter($lst)),implode(',', array_filter($list)));
+           
+            } 
+
+            return new Response( $content );            
+      }
+
+
+
 }

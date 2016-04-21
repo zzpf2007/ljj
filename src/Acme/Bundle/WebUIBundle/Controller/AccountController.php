@@ -22,17 +22,45 @@ class AccountController extends Controller
     public function indexAction(Request $request)
     {      
         $em = $this->getDoctrine()->getManager();
-        $users = $em->getRepository('AppBundle:User')->findAll();
+        $accounts = $em->getRepository('AppBundle:Account')->findAll();
 
         $delete_form = $this->createFormBuilder()
                       ->setMethod('DELETE')
                       ->getForm();
-
+       
         //$qb = $em->getRepository('AppBundle:User')->createQueryBuilder('n')->orderby('n.id','asc');
         //$paginator = $this->get('knp_paginator');
         //$pagination = $paginator->paginate($qb, $request->query->getInt('page', 1),5);
 
-        return array('users' => $users,'delete_form' => $delete_form->createView());
+        return array('accounts' => $accounts,'delete_form' => $delete_form->createView());
+    }
+      /**
+     * @Template()
+     */
+    public function deleteAction(Request $request,$id)
+    {
+         
+        $em = $this->getDoctrine()->getManager();
+        $account = $em->getRepository('AppBundle:Account')->find($id);
+
+        $form = $this->createDeleteForm($account);
+
+        $form->handleRequest($request);
+
+        $em->remove($account);
+        $em->flush();
+
+
+        return $this->redirectToRoute('account_index_path');
+    }
+
+    private function createDeleteForm($account)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('account_delete_path', array('id' => $account->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+        ;
     }
   
 }

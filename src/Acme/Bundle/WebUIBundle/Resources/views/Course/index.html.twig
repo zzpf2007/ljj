@@ -46,7 +46,10 @@
 				                   {{ form_widget( delete_form ) }}  
 				                   <input type="submit" value="删除" />
 				                   {{ form_end(delete_form) }}
-				                </div> 					               
+				                </div> 	
+				                 <a href="{{ path('course_edit_path',{ id : course.id }) }}">
+					                 <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 购买</button>
+					             </a> 				               
 					             
 			                  </div>
 			                </div>

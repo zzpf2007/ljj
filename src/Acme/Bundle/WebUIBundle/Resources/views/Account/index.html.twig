@@ -25,31 +25,31 @@
 		              <td>操作</td>
 		            </tr>
 
-                    {% for user in users %}
+                    {% for account in accounts %}
 	                    <tr>
-	                      <td><input type="checkbox" /></td>
-	                      <td class="am-hide-sm-only">{{ user.id }}</td>
-	                      <td class="am-hide-sm-only">{{ user.username }}</td>
-			              <td class="am-hide-sm-only">{{ user.account ? user.account.name : '' }}</td>
-			              <td class="am-hide-sm-only">{{ user.account ? user.account.photo : ''}}</td>
-			              <td class="am-hide-sm-only">{{ user.account ? user.account.phonenumber : '' }}</td>
-			              <td class="am-hide-sm-only">{{ user.account ? user.account.othernumber : ''}}</td>
-			              <td class="am-hide-sm-only">{{ user.account ? user.account.signature : '' }}</td>
-			              <td class="am-hide-sm-only">{{ user.account ? user.account.number : ''}}</td>
-			              <td class="am-hide-sm-only">{{ user.account ? user.account.balance : '' }}</td>
+	                     <td><input type="checkbox" /></td>
+	                      <td class="am-hide-sm-only">{{ account.id }}</td>
+	                      <td class="am-hide-sm-only"> {{ account.user.username }}</td>
+			              <td class="am-hide-sm-only">{{ account.name }}</td>
+			              <td class="am-hide-sm-only">{{ account.photo }}</td>
+			              <td class="am-hide-sm-only">{{ account.phonenumber }}</td>
+			              <td class="am-hide-sm-only">{{ account.othernumber }}</td>
+			              <td class="am-hide-sm-only">{{ account.signature }}</td>
+			              <td class="am-hide-sm-only">{{ account.number }}</td>
+			              <td class="am-hide-sm-only">{{ account.balance }}</td>
 			              <td>
 			                <div class="am-btn-toolbar">
 			                  <div class="am-btn-group am-btn-group-xs">
 
-			                    {#} <a href=" {{ path('category_edit_path', { id : category.id })  }} ">
+			                     {#}<a href=" {{ path('category_edit_path', { id : category.id })  }} ">
 					                 <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
-					             </a>   					               
-					             <div class="del">
-				                   {{ form_start( delete_form, { 'action': path( 'category_delete_path', { 'id' : category.id } ) } ) }}                    
+					             </a>   #}					               
+					            <div class="">
+				                   {{ form_start( delete_form, { 'action': path( 'account_delete_path', { 'id' : account.id } ) } ) }}                    
 				                   {{ form_widget( delete_form ) }}  
 				                   <input type="submit" value="删除" />
 				                   {{ form_end(delete_form) }}
-				                 </div>#}
+				                 </div>
 			                  </div>
 			                </div>
 			              </td>

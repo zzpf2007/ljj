@@ -27,6 +27,9 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        #这里加不需要登录就能访问的路由
+        - { path: ^/控制器的名称/(同步通知路由|异步通知路由)$, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
+       
 
        #- { path: ^/home, roles: ROLE_USER } # role是用户需要具备的角色，登录成功默认会有ROLE_USER
        # - { path: ^/account/pictures/index, roles: ROLE_SUPER_ADMIN }
